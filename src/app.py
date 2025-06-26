@@ -46,7 +46,7 @@ def index():
             total_requests += 1
             start_time = time.time()
             filename = file.filename
-            filepath = os.path.join("static", filename)
+            filepath = os.path.join("static",filename)
             file.save(filepath)
 
             try:
