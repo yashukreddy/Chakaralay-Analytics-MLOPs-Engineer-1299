@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Animal Detector</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Animal Detector</h1>
+
+    <h3>Animals this model can identify:</h3>
+    <ul style="list-style: none; padding: 0;">
+        <li>🐻 Bear</li>
+        <li>🐦 Bird</li>
+        <li>🐱 Cat</li>
+        <li>🐮 Cow</li>
+        <li>🦌 Deer</li>
+        <li>🐶 Dog</li>
+        <li>🐬 Dolphin</li>
+        <li>🐘 Elephant</li>
+        <li>🦒 Giraffe</li>
+        <li>🐴 Horse</li>
+        <li>🦘 Kangaroo</li>
+        <li>🦁 Lion</li>
+        <li>🐼 Panda</li>
+        <li>🐯 Tiger</li>
+        <li>🦓 Zebra</li>
+    </ul>
+
+    <form method="POST" enctype="multipart/form-data">
+        <input type="file" name="file" accept="image/*" required>
+        <button type="submit">Predict</button>
+    </form>
+
+    {% if prediction %}
+        <h2>{{ prediction }}</h2>
+    {% endif %}
+
+    {% if image_url %}
+        <h3>Uploaded Image:</h3>
+        <img src="{{ image_url }}" alt="Uploaded Image" style="max-width: 300px;">
+    {% endif %}
+</body>
+</html>
