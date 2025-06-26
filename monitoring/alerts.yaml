@@ -1,0 +1,66 @@
+apiVersion: 1
+groups:
+    - orgId: 1
+      name: eval group
+      folder: Animal-Identification-Alerts
+      interval: 30s
+      rules:
+        - uid: eeq4grym9t88wb
+          title: Confidence Score
+          condition: C
+          data:
+            - refId: A
+              relativeTimeRange:
+                from: 13584
+                to: 1135
+              datasourceUid: feq4e08kpem0wd
+              model:
+                adhocFilters: []
+                datasource:
+                    type: prometheus
+                    uid: feq4e08kpem0wd
+                editorMode: code
+                expr: latest_prediction_confidence
+                instant: true
+                interval: ""
+                intervalMs: 15000
+                legendFormat: __auto
+                maxDataPoints: 43200
+                range: false
+                refId: A
+            - refId: C
+              datasourceUid: __expr__
+              model:
+                conditions:
+                    - evaluator:
+                        params:
+                            - 60
+                        type: lt
+                      operator:
+                        type: and
+                      query:
+                        params:
+                            - C
+                      reducer:
+                        params: []
+                        type: last
+                      type: query
+                datasource:
+                    type: __expr__
+                    uid: __expr__
+                expression: A
+                intervalMs: 1000
+                maxDataPoints: 43200
+                refId: C
+                type: threshold
+          dashboardUid: e6eb17c7-e00a-4c8a-bd80-85f8242c8c77
+          panelId: 3
+          noDataState: NoData
+          execErrState: Error
+          annotations:
+            __dashboardUid__: e6eb17c7-e00a-4c8a-bd80-85f8242c8c77
+            __panelId__: "3"
+          labels: {}
+          isPaused: false
+          notification_settings:
+            receiver: grafana-default-email

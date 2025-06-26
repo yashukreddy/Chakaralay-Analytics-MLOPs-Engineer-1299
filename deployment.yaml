@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: animal-identification-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: animal-identification-app
+  template:
+    metadata:
+      labels:
+        app: animal-identification-app
+    spec:
+      containers:
+      - name: animal-identification-app
+        image: animal-identification-app:latest
+        imagePullPolicy: Never
+        resources:
+          limits:
+            memory: "64Mi"
+            cpu: "200m"
+        ports:
+        - containerPort: 5000

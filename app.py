@@ -35,7 +35,6 @@ def prepare_image(img_path):
 @app.route("/", methods=["GET", "POST"])
 def index():
     global total_requests, successful_predictions, total_latency, latest_confidence
-    total_requests += 1
 
     prediction = None
     image_url = None
@@ -44,6 +43,7 @@ def index():
     if request.method == "POST":
         file = request.files.get("file")
         if file:
+            total_requests += 1
             start_time = time.time()
             filename = file.filename
             filepath = os.path.join("static", filename)
